@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+    overflow: hidden;
+    /* Prevent scrollbars from the background animation */
+
+    /* Modern, attractive background with animated gradients */
+    background: linear-gradient(135deg, #2a2a72 0%, #009ffd 100%);
+    /* Deep blue to vibrant blue */
+    position: relative;
+    /* For pseudo-elements */
+}
+
+/* --- Floating 3D-like Particles Effect --- */
+body::before,
+body::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    /* Make them circular */
+    opacity: 0.7;
+    filter: blur(80px);
+    /* Soft glow effect */
+    animation: floatEffect 20s infinite ease-in-out alternate;
+    /* Smooth floating animation */
+    z-index: 0;
+    /* Ensure they are behind the content */
+}
+
+body::before {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, #ff9a9e 0%, #fad0c4 100%);
+    /* Soft red/orange glow */
+    top: -50px;
+    left: -50px;
+    animation-delay: 0s;
+}
+
+body::after {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #a18cd1 0%, #fbc2eb 100%);
+    /* Soft purple/pink glow */
+    bottom: -80px;
+    right: -80px;
+    animation-delay: 10s;
+    /* Stagger animation for more dynamic movement */
+}
+
+@keyframes floatEffect {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.7;
+    }
+
+    25% {
+        transform: translate(50px, -30px) scale(1.05);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: translate(100px, 50px) scale(1.1);
+        opacity: 0.75;
+    }
+
+    75% {
+        transform: translate(-30px, 80px) scale(0.95);
+        opacity: 0.85;
+    }
+
+    100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.7;
+    }
+}
+
+/* --- Container and other elements (unchanged from previous update) --- */
+.container {
+    background-color: rgba(255, 255, 255, 0.95);
+    /* Slightly transparent white for content to stand out */
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25), 0 6px 10px rgba(0, 0, 0, 0.15);
+    /* Stronger 3D shadow */
+    max-width: 450px;
+    width: 90%;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative;
+    /* Ensure content is above background particles */
+    z-index: 1;
+    /* Bring content to front */
+    backdrop-filter: blur(5px);
+    /* Subtle blur behind the container for extra depth */
+}
+
+.container:hover {
+    transform: translateY(-8px) scale(1.01);
+    /* More pronounced lift and slight scale on hover */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    /* Subtle text shadow */
+}
+
+form {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    color: #34495e;
+}
+
+input[type="number"] {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    width: 80px;
+    text-align: center;
+    margin-left: 10px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* Inner shadow for depth */
+}
+
+button {
+    padding: 12px 25px;
+    /* Slightly larger buttons */
+    font-size: 1.05em;
+    background-color: #2ecc71;
+    /* Green Button */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    /* Slightly more rounded */
+    cursor: pointer;
+    margin-top: 20px;
+    box-shadow: 0 6px #27ae60;
+    /* Stronger 3D button effect */
+    transition: background-color 0.1s, transform 0.1s, box-shadow 0.1s;
+    letter-spacing: 0.5px;
+    /* Spaced letters */
+}
+
+button:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+    box-shadow: 0 8px #27ae60;
+}
+
+button:active {
+    background-color: #27ae60;
+    box-shadow: 0 2px #27ae60;
+    transform: translateY(4px);
+}
+
+h2 {
+    margin-top: 30px;
+    color: #2c3e50;
+    font-size: 1.4em;
+    border-top: 1px solid #ecf0f1;
+    padding-top: 20px;
+}
+
+#generatedPassword {
+    font-size: 1.6em;
+    /* Slightly larger password text */
+    color: #e74c3c;
+    /* Highlighted Password Color */
+    margin: 15px 0;
+    word-break: break-all;
+    background-color: #ecf0f1;
+    padding: 12px;
+    /* Slightly more padding */
+    border-radius: 8px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.copy-button {
+    background-color: #3498db;
+    /* Blue Copy Button */
+    box-shadow: 0 6px #2980b9;
+}
+
+.copy-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 8px #2980b9;
+}
+
+.copy-button:active {
+    background-color: #2980b9;
+    box-shadow: 0 2px #2980b9;
+    transform: translateY(4px);
+}

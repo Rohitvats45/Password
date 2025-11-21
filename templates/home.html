@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strong Password Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Strong Password Generator 🔒</h1>
+        <form method="POST" action="/">
+            <label for="password_length">Enter the **desired password length**:</label>
+            <input type="number" id="password_length" name="password_length" value="12" min="1" required>
+            <button type="submit">Generate Password</button>
+        </form>
+        {% if password %}
+        <h2>Your Generated Password:</h2>
+        <p id="generatedPassword">{{ password }}</p>
+        <button onclick="copyToClipboard()" class="copy-button">Copy to Clipboard</button>
+        {% endif %}
+    </div>
+
+    <script>
+        function copyToClipboard() {
+            var passwordElement = document.getElementById("generatedPassword");
+            var passwordText = passwordElement.innerText;
+
+            // Use the modern Clipboard API if available
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(passwordText).then(function () {
+                    alert("Password copied to clipboard!");
+                }).catch(function (err) {
+                    console.error('Could not copy text: ', err);
+                    fallbackCopyTextToClipboard(passwordText);
+                });
+            } else {
+                // Fallback for older browsers
+                fallbackCopyTextToClipboard(passwordText);
+            }
+        }
+
+        // Fallback copy function for older browsers
+        function fallbackCopyTextToClipboard(text) {
+            var textArea = document.createElement("textarea");
+            textArea.value = text;
+
+            // Avoid scrolling to the bottom of the page in some browsers
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                var successful = document.execCommand('copy');
+                var msg = successful ? 'successful' : 'unsuccessful';
+                alert("Password copied to clipboard!");
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+
+            document.body.removeChild(textArea);
+        }
+    </script>
+</body>
+
+</html>
